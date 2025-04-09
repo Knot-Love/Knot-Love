@@ -35,23 +35,27 @@ const MyOrders = () => {
 
       {!orders.length && <NoData />}
 
+      
       {orders.map((order, index) => (
-        <div key={order._id + index + "order"} className='order rounded p-4 text-sm'>
-          <p>Order No : {order?.orderId}</p>
-          <div className='flex gap-3 items-center justify-between'>
-            <div className='flex gap-3'>
-              <img src={order.product_details.image[0]} className='w-14 h-14' />
-              <p className='font-medium'>{order.product_details.name}</p>
-            </div>
-            <button
-              className='bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600'
-              onClick={() => handleCancel(order._id)}
-            >
-              Cancel
-            </button>
-          </div>
+  <div key={order._id + index + "order"} className='order rounded p-4 text-sm'>
+    <p>Order No : {order?.orderId}</p>
+    <div className='flex gap-3 items-center justify-between'>
+      <div className='flex gap-3 items-center'>
+        <img src={order.product_details.image[0]} className='w-14 h-14' alt="Product" />
+        <div>
+          <p className='font-medium'>{order.product_details.name}</p>
+          <p className='text-gray-600'>₹ {order.totalAmt}</p>
         </div>
-      ))}
+      </div>
+      <button
+        className='bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600'
+        onClick={() => handleCancel(order._id)}
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+))}
     </div>
   );
 };
